@@ -32,6 +32,8 @@ import {textFieldLength} from '@/config/env';
 import axios from './config/http';
 import VueFilter from 'vue-filter';
 
+import mock from './mock' // 刚刚手写的mock.js文件
+
 Vue.component('chart', ECharts);
 Vue.component(VTable.name, VTable);
 Vue.component(VPagination.name, VPagination);

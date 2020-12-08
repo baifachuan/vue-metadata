@@ -39,8 +39,12 @@ axios.interceptors.response.use(function (response) {
   const url = response.config.url;   //请求接口的url
   response.body = response.data;   //兼容以前的vue-resource
 
-  if (response.headers['content-type'].indexOf('application/json') > -1 &&
-      url.indexOf('/outerapi/v1/getOutterSql/key/') === -1) {    //过滤掉文件上传请求,SQL查询的请求
+
+
+  if (Object.keys(response.headers).length && response.headers['content-type'].indexOf('application/json') > -1 &&
+      url.indexOf('/outerapi/v1/getOutterSql/key/') === -1) {    //过滤掉文件上传请求,SQL查询的请求	      
+  // if (response.headers['content-type'].indexOf('application/json') > -1 &&
+      // url.indexOf('/outerapi/v1/getOutterSql/key/') === -1) {    //过滤掉文件上传请求,SQL查询的请求
     const code = response.data.statusCode;
     const lang = store.state.language;   //获取当前设置的语言
     if (code === 407) {  //用户当前是否已经登陆, 用户每次请求接口时,都要去判断是否已经登陆,否则跳转到登陆页面
